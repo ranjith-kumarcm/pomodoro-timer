@@ -1,0 +1,202 @@
+:root {
+    --primary-color: #e74c3c;
+    --primary-dark: #c0392b;
+    --break-color: #2ecc71;
+    --break-dark: #27ae60;
+    --bg-color: #f9f9f9;
+    --text-color: #333;
+    --surface-color: #fff;
+    --border-radius: 8px;
+    --focus-ring: 0 0 0 3px rgba(231, 76, 60, 0.4);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+header {
+    background-color: var(--primary-color);
+    color: white;
+    text-align: center;
+    padding: 1.5rem;
+    transition: background-color 0.3s;
+}
+
+body.break-mode header {
+    background-color: var(--break-color);
+}
+
+/* CSS Grid for Layout */
+.container {
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+}
+
+@media (min-width: 768px) {
+    .container {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto auto;
+    }
+    
+    .timer-section {
+        grid-column: 1 / -1; /* Spans full width on top */
+    }
+}
+
+section {
+    background: var(--surface-color);
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+/* Timer Styles */
+.timer-section {
+    text-align: center;
+}
+
+.time {
+    font-size: 5rem;
+    font-weight: bold;
+    margin: 1rem 0;
+    font-variant-numeric: tabular-nums;
+}
+
+/* Progress Bar */
+.progress-wrapper {
+    width: 100%;
+    height: 10px;
+    background-color: #e0e0e0;
+    border-radius: 5px;
+    margin: 1rem 0;
+    overflow: hidden;
+}
+
+#progress-bar {
+    height: 100%;
+    width: 100%;
+    background-color: var(--primary-color);
+    transition: width 1s linear, background-color 0.3s;
+}
+
+body.break-mode #progress-bar {
+    background-color: var(--break-color);
+}
+
+/* Flexbox Controls */
+.controls {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+/* Buttons */
+button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+body.break-mode button:not(.secondary-btn) {
+    background-color: var(--break-color);
+}
+
+button:hover:not(:disabled) {
+    background-color: var(--primary-dark);
+}
+
+body.break-mode button:hover:not(.secondary-btn):not(:disabled) {
+    background-color: var(--break-dark);
+}
+
+button:focus {
+    outline: none;
+    box-shadow: var(--focus-ring);
+}
+
+button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+    transform: none;
+}
+
+button:active:not(:disabled) {
+    transform: translateY(2px);
+}
+
+.secondary-btn {
+    background-color: #7f8c8d;
+    margin-top: 1rem;
+}
+
+.secondary-btn:hover {
+    background-color: #636e72;
+}
+
+/* Form Styles */
+.form-group {
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+input, select {
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+}
+
+input:focus, select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: var(--focus-ring);
+}
+
+.error {
+    color: #e74c3c;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Tracking History List */
+#history-list {
+    list-style: none;
+    margin-top: 1rem;
+    max-height: 150px;
+    overflow-y: auto;
+}
+
+#history-list li {
+    padding: 0.5rem;
+    border-bottom: 1px solid #eee;
+    font-size: 0.9rem;
+}
