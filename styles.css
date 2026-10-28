@@ -35,7 +35,7 @@ body.break-mode header {
     background-color: var(--break-color);
 }
 
-/* CSS Grid for Layout */
+
 .container {
     max-width: 900px;
     margin: 2rem auto;
@@ -52,7 +52,7 @@ body.break-mode header {
     }
     
     .timer-section {
-        grid-column: 1 / -1; /* Spans full width on top */
+        grid-column: 1 / -1; 
     }
 }
 
@@ -63,7 +63,7 @@ section {
     box-shadow: 0 4px 6px rgba(0,0,0,0.05);
 }
 
-/* Timer Styles */
+
 .timer-section {
     text-align: center;
 }
@@ -75,7 +75,7 @@ section {
     font-variant-numeric: tabular-nums;
 }
 
-/* Progress Bar */
+
 .progress-wrapper {
     width: 100%;
     height: 10px;
@@ -96,7 +96,7 @@ body.break-mode #progress-bar {
     background-color: var(--break-color);
 }
 
-/* Flexbox Controls */
+
 .controls {
     display: flex;
     justify-content: center;
@@ -104,7 +104,7 @@ body.break-mode #progress-bar {
     flex-wrap: wrap;
 }
 
-/* Buttons */
+
 button {
     background-color: var(--primary-color);
     color: white;
@@ -152,7 +152,7 @@ button:active:not(:disabled) {
     background-color: #636e72;
 }
 
-/* Form Styles */
+
 .form-group {
     margin-bottom: 1rem;
     display: flex;
@@ -187,7 +187,7 @@ input:focus, select:focus {
     display: none;
 }
 
-/* Tracking History List */
+
 #history-list {
     list-style: none;
     margin-top: 1rem;

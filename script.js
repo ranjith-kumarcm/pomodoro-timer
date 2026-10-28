@@ -1,4 +1,3 @@
-// DOM Elements
 const timeDisplay = document.getElementById('time-display');
 const sessionStatus = document.getElementById('session-status');
 const progressBar = document.getElementById('progress-bar');
@@ -14,17 +13,16 @@ const sessionCountDisplay = document.getElementById('session-count');
 const historyList = document.getElementById('history-list');
 const clearHistoryBtn = document.getElementById('clear-history');
 
-// State Variables
 let timerInterval;
-let timeLeft = 25 * 60; // in seconds
-let totalTime = 25 * 60; // for progress calculation
+let timeLeft = 25 * 60; 
+let totalTime = 25 * 60; 
 let isRunning = false;
 let isWorkSession = true;
 let sessionCount = 0;
 let historyData = [];
 let settings = { work: 25, break: 5 };
 
-// --- Audio Notification (Web Audio API for zero dependencies) ---
+
 function playNotification() {
     const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
     const oscillator = audioCtx.createOscillator();
@@ -40,7 +38,7 @@ function playNotification() {
     oscillator.stop(audioCtx.currentTime + 1);
 }
 
-// --- Local Storage Management ---
+
 function saveToLocal() {
     localStorage.setItem('pomodoroSettings', JSON.stringify(settings));
     localStorage.setItem('pomodoroSessions', sessionCount);
@@ -60,16 +58,16 @@ function loadFromLocal() {
     
     sessionCountDisplay.textContent = sessionCount;
     renderHistory();
-    resetTimer(); // Apply loaded settings to timer
+    resetTimer(); 
 }
 
-// --- Core Timer Functions ---
+
 function updateDisplay() {
     const minutes = Math.floor(timeLeft / 60);
     const seconds = timeLeft % 60;
     timeDisplay.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
     
-    // Update Progress Bar
+   
     const progressPercent = (timeLeft / totalTime) * 100;
     progressBar.style.width = `${progressPercent}%`;
 }
@@ -133,12 +131,12 @@ function resetTimer() {
     updateDisplay();
 }
 
-// --- Tracking/History Functions ---
+
 function addHistoryEntry(message) {
     const date = new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
     const entry = `${date} - ${message}`;
-    historyData.unshift(entry); // Add to beginning
-    if (historyData.length > 10) historyData.pop(); // Keep last 10
+    historyData.unshift(entry); 
+    if (historyData.length > 10) historyData.pop(); 
     renderHistory();
 }
 
@@ -159,7 +157,7 @@ function clearHistory() {
     saveToLocal();
 }
 
-// --- Validation & Form Handling ---
+
 settingsForm.addEventListener('submit', (e) => {
     e.preventDefault();
     
@@ -175,10 +173,10 @@ settingsForm.addEventListener('submit', (e) => {
     errorMsg.classList.add('hidden');
     settings.work = workVal;
     settings.break = breakVal;
-    presetSelect.value = 'custom'; // Reset dropdown to custom
+    presetSelect.value = 'custom'; 
     
     saveToLocal();
-    resetTimer(); // Apply new times immediately
+    resetTimer(); 
 });
 
 presetSelect.addEventListener('change', (e) => {
@@ -190,11 +188,11 @@ presetSelect.addEventListener('change', (e) => {
     }
 });
 
-// --- Event Listeners ---
+
 startBtn.addEventListener('click', startTimer);
 pauseBtn.addEventListener('click', pauseTimer);
 resetBtn.addEventListener('click', resetTimer);
 clearHistoryBtn.addEventListener('click', clearHistory);
 
-// Initialize application
+
 document.addEventListener('DOMContentLoaded', loadFromLocal);
